@@ -9,9 +9,13 @@ import {config} from "./config.js";
 import {sequelize} from "./db/database.js"
 
 const app = express();
+const corsOption = {
+    origin: config.cors.allowedOrigin,
+    optionsSuccessStatus: 200
+};
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOption));
 app.use(morgan("tiny"));
 
 app.use("/auth", authRouter);
